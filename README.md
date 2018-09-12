@@ -1,6 +1,6 @@
-# Vue SSR demo
+# Blog 2.0
 
-**A detailed Vue SSR guide can be found [here](https://ssr.vuejs.org).**
+**Vue SSR**
 
 ## Build Setup
 
