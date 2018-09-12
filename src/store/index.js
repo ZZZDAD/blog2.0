@@ -1,28 +1,29 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import actions from './actions'
-import mutations from './mutations'
 import getters from './getters'
+import mutations from './mutations'
+import actions from './actions'
+import logger from 'vuex/dist/logger'
 
 Vue.use(Vuex)
 
-export function createStore () {
+export function createStore() {
   return new Vuex.Store({
     state: {
-      activeType: null,
-      itemsPerPage: 20,
-      items: {/* [id: number]: Item */},
-      users: {/* [id: string]: User */},
-      lists: {
-        top: [/* number */],
-        new: [],
-        show: [],
-        ask: [],
-        job: []
-      }
+      token: null,
+      page: 1,
+      page_count: null,
+      show_sidebar: false,
+      table_jump: null,
+      sort: [],
+      article: {},
+      all_article: [],
+      published_article: [],
+      comment: []
     },
-    actions,
+    getters,
     mutations,
-    getters
+    actions,
+    // plugins: [logger()]
   })
 }

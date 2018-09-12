@@ -5,9 +5,14 @@ import { createRouter } from './router'
 import { sync } from 'vuex-router-sync'
 import titleMixin from './util/title'
 import * as filters from './util/filters'
+import ElementUI from 'element-ui'
 
 // mixin for handling title
 Vue.mixin(titleMixin)
+Vue.use(ElementUI)
+
+// Chrome Vue面板
+Vue.config.devtools = true;
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {

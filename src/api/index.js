@@ -1,76 +1,81 @@
-// this is aliased in webpack config based on server/client build
-import { createAPI } from 'create-api'
+import fetch from '@/util/fetch';
 
-const logRequests = !!process.env.DEBUG_API
-
-const api = createAPI({
-  version: '/v0',
-  config: {
-    databaseURL: 'https://hacker-news.firebaseio.com'
-  }
-})
-
-// warm the front page cache every 15 min
-// make sure to do this only once across all requests
-if (api.onServer) {
-  warmCache()
+// 后台管理登录
+export function admin_login(param) {
+  return fetch.post('/login/login', param) // username password
 }
 
-function warmCache () {
-  fetchItems((api.cachedIds.top || []).slice(0, 30))
-  setTimeout(warmCache, 1000 * 60 * 15)
+// 添加分类标签
+export function add_sort(param) {
+  return fetch.post('/sort/add_sort', param) // value
 }
 
-function fetch (child) {
-  logRequests && console.log(`fetching ${child}...`)
-  const cache = api.cachedItems
-  if (cache && cache.has(child)) {
-    logRequests && console.log(`cache hit for ${child}.`)
-    return Promise.resolve(cache.get(child))
-  } else {
-    return new Promise((resolve, reject) => {
-      api.child(child).once('value', snapshot => {
-        const val = snapshot.val()
-        // mark the timestamp when this item is cached
-        if (val) val.__lastUpdated = Date.now()
-        cache && cache.set(child, val)
-        logRequests && console.log(`fetched ${child}.`)
-        resolve(val)
-      }, reject)
-    })
-  }
+// 获取分类标签
+export function get_sort() {
+  return fetch.get('/sort/get_sort', true)
 }
 
-export function fetchIdsByType (type) {
-  return api.cachedIds && api.cachedIds[type]
-    ? Promise.resolve(api.cachedIds[type])
-    : fetch(`${type}stories`)
+// 移除分类标签
+export function remove_sort(param) {
+  return fetch.post('/sort/remove_sort', param) // id
 }
 
-export function fetchItem (id) {
-  return fetch(`item/${id}`)
+// 保存文章
+export function save_article(param) {
+  return fetch.post('/article/save_article', param) // title sort content intro
 }
 
-export function fetchItems (ids) {
-  return Promise.all(ids.map(id => fetchItem(id)))
+// 更新文章
+export function update_article(param) {
+  return fetch.post('/article/update_article', param) // _id title sort content intro
 }
 
-export function fetchUser (id) {
-  return fetch(`user/${id}`)
+// 发布文章
+export function publish_article(param) {
+  return fetch.post('/article/publish_article', param) // _id
 }
 
-export function watchList (type, cb) {
-  let first = true
-  const ref = api.child(`${type}stories`)
-  const handler = snapshot => {
-    if (first) {
-      first = false
-    } else {
-      cb(snapshot.val())
-    }
-  }
-  ref.on('value', handler)
-  return () => {
-    ref.off('value', handler)
-  }
+// 取消文章发布
+export function cancel_publish_article(param) {
+  return fetch.post('/article/cancel_publish_article', param) // _id
+}
+
+// 删除文章
+export function remove_article(param) {
+  return fetch.post('/article/remove_article', param) // _id
+}
+
+// 查看所有文章
+export function all_article(page) {
+  return fetch.get('/article/all_article/' + page, true)
+}
+
+// 查看单篇文章
+export function get_article(id) {
+  return fetch.get('/article/article/' + id, true) // id
+}
+
+// 查看已发布文章
+export function published_article(param) {
+  return fetch.post('/article/published_article', param, true) // [sort]
+}
+
+// 发送留言
+export function post_comment(param) {
+  return fetch.post('/comment/post_comment', param) // article_id name mail message
+}
+
+// 获取所有留言
+export function get_all_comment() {
+  return fetch.get('/comment/get_all_comment', true)
+}
+
+// 获取文章留言
+export function get_article_comment(article_id) {
+  return fetch.get('/comment/get_article_comment/' + article_id, true) // article_id
+}
+
+// 移除留言
+export function remove_comment(param) {
+  return fetch.post('/comment/remove_comment', param) // _id
 }
