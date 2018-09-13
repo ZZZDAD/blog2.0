@@ -85,7 +85,7 @@ function render(req, res) {
   }
 
   const context = {
-    title: 'Vue SSR', // default title
+    title: '大D的博客', // default title
     url: req.url,
     cookies: req.cookies
   }

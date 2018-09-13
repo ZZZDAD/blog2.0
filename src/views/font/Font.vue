@@ -12,7 +12,7 @@
           <router-view></router-view>
         </div>
       </Scroll>
-      
+
       <div class="wrapper" v-if="model===1">
         <router-view></router-view>
       </div>
@@ -69,15 +69,20 @@ export default {
   }
   .wrapper {
     position: fixed;
-    top: 47px;
+    top: 50px;
     bottom: 10px;
     left: 40%;
     right: 0px;
     overflow-y: scroll;
+    padding-top: 10px;
     @media only screen and(max-width: 600px) {
-      left: 10px;
-      right: 10px;
+      padding-top: 0px;
+      left: 30px;
+      right: 30px;
       transition: left 0.4s ease-in-out;
+      .content {
+        padding-top: 10px;
+      }
     }
   }
 }

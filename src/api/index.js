@@ -6,8 +6,8 @@ export function admin_login(param) {
 }
 
 // 添加分类标签
-export function add_sort(param) {
-  return fetch.post('/sort/add_sort', param) // value
+export function add_sort(param, token) {
+  return fetch.post('/sort/add_sort', param, token) // value
 }
 
 // 获取分类标签
@@ -16,33 +16,33 @@ export function get_sort() {
 }
 
 // 移除分类标签
-export function remove_sort(param) {
-  return fetch.post('/sort/remove_sort', param) // id
+export function remove_sort(param, token) {
+  return fetch.post('/sort/remove_sort', param, token) // id
 }
 
 // 保存文章
-export function save_article(param) {
-  return fetch.post('/article/save_article', param) // title sort content intro
+export function save_article(param, token) {
+  return fetch.post('/article/save_article', param, token) // title sort content intro
 }
 
 // 更新文章
-export function update_article(param) {
-  return fetch.post('/article/update_article', param) // _id title sort content intro
+export function update_article(param, token) {
+  return fetch.post('/article/update_article', param, token) // _id title sort content intro
 }
 
 // 发布文章
-export function publish_article(param) {
-  return fetch.post('/article/publish_article', param) // _id
+export function publish_article(param, token) {
+  return fetch.post('/article/publish_article', param, token) // _id
 }
 
 // 取消文章发布
-export function cancel_publish_article(param) {
-  return fetch.post('/article/cancel_publish_article', param) // _id
+export function cancel_publish_article(param, token) {
+  return fetch.post('/article/cancel_publish_article', param, token) // _id
 }
 
 // 删除文章
-export function remove_article(param) {
-  return fetch.post('/article/remove_article', param) // _id
+export function remove_article(param, token) {
+  return fetch.post('/article/remove_article', param, token) // _id
 }
 
 // 查看所有文章
@@ -76,6 +76,6 @@ export function get_article_comment(article_id) {
 }
 
 // 移除留言
-export function remove_comment(param) {
-  return fetch.post('/comment/remove_comment', param) // _id
+export function remove_comment(param, token) {
+  return fetch.post('/comment/remove_comment', param, token) // _id
 }

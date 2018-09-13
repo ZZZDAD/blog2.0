@@ -42,7 +42,7 @@ export default {
         this.$store.dispatch('Login', {
           username: this.username,
           password: this.password
-        }).then(reslut => {
+        }).then(() => {
           this.$router.push('article')
         }).catch(error => {
           this.$message({
@@ -65,6 +65,7 @@ export default {
 
 <style lang="less" scoped>
 .adminLogin {
+  text-align: center;
   .logo {
     margin-top: 50px;
   }

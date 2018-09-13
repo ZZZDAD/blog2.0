@@ -1,6 +1,6 @@
 <template>
   <div class="fontArticle" v-loading="loading" @touchstart='hideSidebar' @scroll="hideSidebar">
-    <div class="articleHtml" v-html="articleHtml">
+    <div class="articleHtml" v-html="html">
     </div>
     <ArticleComment v-show='!loading'>
     </ArticleComment>
@@ -21,13 +21,37 @@ export default {
   },
   data() {
     return {
-      loading: true
+      loading: true,
+      html: ""
     };
   },
   computed: {
     articleHtml() {
       return this.$store.getters.article.content;
     }
+  },
+  beforeMount() {
+    let preArr = this.articleHtml.split("<pre>");
+    let newArr = [];
+    preArr.forEach((str, index) => {
+      if (index != 0) {
+        newArr.push("<code>" + str);
+      } else {
+        newArr.push(str);
+      }
+    });
+    let newHtml = newArr.join("<pre>");
+    preArr = newHtml.split("</pre>");
+    newArr = [];
+    preArr.forEach((str, index, arr) => {
+      if (index != arr.length - 1) {
+        newArr.push(str + "</code>");
+      } else {
+        newArr.push(str);
+      }
+    });
+    newHtml = newArr.join("</pre>");
+    this.html = newHtml;
   },
   mounted() {
     this.loading = false;
@@ -48,7 +72,7 @@ export default {
       let moveDistance = 0; // 此次触摸的 X 位移
       let lastMoveDistance = 0; // 上一次触摸的 X 位移
 
-      if (codeElem) {
+      if (codeElem && width >= 0) {
         codeElem.addEventListener("touchstart", e => {
           startX = e.changedTouches[0].clientX;
         });
@@ -101,6 +125,9 @@ export default {
     h1,
     h2,
     h3,
+    h4 {
+      margin: 10px 0 5px;
+    }
     p {
       margin: 5px 0;
     }
@@ -114,6 +141,7 @@ export default {
       padding: 10px;
       overflow-x: scroll;
       code {
+        // font-size: 10px!important;
         float: left;
         transform: translate(0, 0);
       }

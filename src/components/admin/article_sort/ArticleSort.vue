@@ -43,7 +43,7 @@ export default {
     removeSort (index) {
       remove_sort({
         id: this.items[index].id
-      }).then(response => {
+      }, this.$store.getters.token).then(response => {
         if (response.data.code == 200) {
           this.$store.dispatch('GetSort')
           this.$message({
@@ -63,11 +63,12 @@ export default {
     },
     // 添加分类标签
     addSort () {
-      let inputValue = this.inputValue
+      const inputValue = this.inputValue
+      const token = this.$store.getters.token
       if (inputValue) {
         add_sort({
           value: inputValue
-        }).then(response => {
+        }, token).then(response => {
           const data = response.data
           if (data.code == 200) {
             this.items.push(data.data)

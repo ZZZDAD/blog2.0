@@ -74,7 +74,7 @@ export default {
       }).then(() => {
         remove_comment({
           _id: row._id
-        }).then(response => {
+        }, this.$store.getters.token).then(response => {
           const data = response.data
           if (data.code == 200) {
             this.$store.dispatch('GetAllComment')

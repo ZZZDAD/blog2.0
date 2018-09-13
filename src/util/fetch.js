@@ -2,7 +2,6 @@ import axios from 'axios'
 import qs from 'qs'
 import md5 from 'md5'
 import config from '@/config/api-cache.js'
-// import store from '@/store'
 
 
 // CORS Cross-Origin Macro
@@ -29,9 +28,9 @@ const service = axios.create()
 
 // request拦截器(带token)
 service.interceptors.request.use(config => {
-	// if (store.getters.token) {
-	// 	config.headers['x-access-token'] = store.getters.token
-	// }
+	if (config.token) {
+		config.headers['x-access-token'] = config.token
+	}
 	return config
 }, error => {
 	console.error(error)
@@ -50,12 +49,15 @@ service.interceptors.request.use(config => {
 })
 
 export default {
-	post(url, params, cache = false) {
+	post(url, params, token = null, cache = false) {
 		const key = md5(url + JSON.stringify(params))
 		if (config.cached && config.cached.has(key)) {
 			return Promise.resolve(config.cached.get(key))
 		}
-		return service.post(url, params)
+		const headers = {
+			'token': token
+		}
+		return service.post(url, params, headers)
 			.then(res => {
 				if (config.cached && cache) config.cached.set(key, res)
 				return res

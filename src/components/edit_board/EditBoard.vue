@@ -21,6 +21,7 @@
     <!-- 展示区 -->
     <div
       class="demo-area"
+      :class="{'only-demo':(!isShowEdit)}"
       v-if='isShowDemo'>
       <DemoArea
         :content='content'>
@@ -85,10 +86,9 @@ export default {
   height: 450px;
   .edit-area {
     float: left;
-    border-right: 1px rgb(223, 221, 231) solid;
-    width: 50%;
+    width: 49.5%;
     height: 100%;
-    background: #2c3e50;
+    position: relative;
     &.only-edit {
       width: 100%;
     }
@@ -96,8 +96,11 @@ export default {
   .demo-area {
     overflow: auto;
     float: left;
-    width: 49%;
+    width: 49.5%;
     height: 100%;
+    &.only-demo {
+      width: 100%;
+    }
   }
 }
 </style>

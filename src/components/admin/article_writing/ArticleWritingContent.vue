@@ -1,29 +1,28 @@
 <template>
   <div class="articleWritingContent">
-    <EditBoard
-      @transferContent='getContent'>
+    <EditBoard @transferContent='getContent'>
     </EditBoard>
   </div>
 </template>
 
 <script>
-import EditBoard from '@/components/edit_board/EditBoard.vue'
+import EditBoard from "@/components/edit_board/EditBoard.vue";
 
 export default {
   components: {
     EditBoard
   },
-  data () {
+  data() {
     return {
       text: null
-    }
+    };
   },
   methods: {
-    getContent (content) {
-      this.$emit('transferContent', content)
+    getContent(content) {
+      this.$emit("transferContent", content);
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

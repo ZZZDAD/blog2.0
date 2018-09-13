@@ -97,7 +97,7 @@ export default {
           sort: this.sort.join('-'),
           content: this.content,
           intro: intro
-        }).then(response => {
+        }, this.$store.getters.token).then(response => {
           if (response.data.code == 200) {
             this.$message({
               showClose: true,
@@ -127,7 +127,7 @@ export default {
           sort: this.sort.join('-'),
           content: this.content,
           intro: intro
-        }).then(response => {
+        }, this.$store.getters.token).then(response => {
           if (response.data.code == 200) {
             this.$message({
               showClose: true,
@@ -151,7 +151,7 @@ export default {
         this.publishing = true
         publish_article({
           _id: this._id
-        }).then(response => {
+        }, this.$store.getters.token).then(response => {
           if (response.data.code == 200) {
             this.$message({
               showClose: true,
@@ -175,7 +175,7 @@ export default {
         this.cancelPublishing = true
         cancel_publish_article({
           _id: this._id
-        }).then(response => {
+        }, this.$store.getters.token).then(response => {
           if (response.data.code == 200) {
             this.$message({
               showClose: true,
@@ -199,7 +199,7 @@ export default {
         this.removing = true
         remove_article({
           _id: this._id
-        }).then(response => {
+        }, this.$store.getters.token).then(response => {
           if (response.data.code == 200) {
             this.$message({
               showClose: true,

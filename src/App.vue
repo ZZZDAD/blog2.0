@@ -7,10 +7,8 @@
 </template>
 
 <script>
-import storageMixins from "@/util/storage";
-
 export default {
-  mixins: [storageMixins]
+  name: "app"
 };
 </script>
 

@@ -6,29 +6,41 @@
 
 <script>
 export default {
-  props: ['content']
-}
+  props: ["content"]
+};
 </script>
 
 <style lang="less">
 .demoArea {
-  margin: 2px;
-  padding: 4px;
+  padding: 10px;
   overflow: auto;
-  width: 94%;
-  height: 88%;
-  * {
-    margin: 0;
-    color: #2c3e50;
+  font-size: 0.9rem;
+  .imp {
+    font-weight: 700;
   }
-  img {
-    width: 80%;
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 10px 0 5px;
+  }
+  p {
+    margin: 5px 0;
+  }
+  a {
+    color: rgb(86, 156, 214);
   }
   pre {
-    background: rgba(200, 200, 200, 0.4);
-    padding: 10px 10px 0px 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    overflow: hidden;
+    padding: 10px;
+    overflow-x: scroll;
+    code {
+      // font-size: 10px!important;
+      float: left;
+      transform: translate(0, 0);
+    }
   }
 }
 </style>

@@ -30,10 +30,3 @@ export default {
   }
 };
 </script>
-
-
-<style lang="less" scoped>
-.wrapper.fontDirectory{
-  // height: 100%;
-}
-</style>
