@@ -22,7 +22,7 @@ function createRenderer(bundle, options) {
   return createBundleRenderer(bundle, Object.assign(options, {
     cache: LRU({
       max: 1000,
-      maxAge: 1000 * 60 * 20
+      maxAge: 1000 * 60 * 3
     }),
     basedir: resolve('./dist'),
     runInNewContext: false

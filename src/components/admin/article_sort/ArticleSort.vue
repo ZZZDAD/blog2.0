@@ -72,7 +72,6 @@ export default {
           const data = response.data
           if (data.code == 200) {
             this.items.push(data.data)
-            console.log(data.data)
             this.$store.dispatch('GetSort')
           } else {
             console.error(data.message)

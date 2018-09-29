@@ -2,7 +2,7 @@
   <div class="fontHeader">
     <i class="iconfont icon-sidebar" @click='showSidebar'></i>
     <div class="title" @click='intoDirectory'>
-      <img src="http://blog-1253521382.cosgz.myqcloud.com/base/logo.png" class="logo">
+      <img src="https://blog-1253521382.cosgz.myqcloud.com/base/logo.png" class="logo">
       <span class="text"> Zhang Da D's Blog </span>
     </div>
   </div>

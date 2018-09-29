@@ -17,6 +17,7 @@ axios.defaults.headers[ALLOW_METHODS] = 'GET, POST'
 // axios 配置
 axios.defaults.timeout = 5000 // 请求超时
 axios.defaults.baseURL = 'https://dad2048.com/server'
+// axios.defaults.baseURL = 'http://127.0.0.1:3000'
 
 const CONTENT_TYPE = 'Content-Type'
 axios.defaults.headers.post[CONTENT_TYPE] = 'application/x-www-form-urlencoded;charset=UTF-8'

@@ -1,6 +1,6 @@
 <template>
   <div class="adminLogin">
-    <img src="http://blog-1253521382.cosgz.myqcloud.com/base/logo.png" class="logo">
+    <img src="https://blog-1253521382.cosgz.myqcloud.com/base/logo.png" class="logo">
     <div class="input">
       <el-input
         placeholder="username"

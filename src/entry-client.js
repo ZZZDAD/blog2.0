@@ -3,10 +3,10 @@ import 'es6-promise/auto'
 import { createApp } from './app'
 import ProgressBar from './components/ProgressBar.vue'
 import fastclick from 'fastclick';
-import VConsole from 'vconsole';
+// import VConsole from 'vconsole';
 
 // 移动端console
-const vConsole = new VConsole()
+// const vConsole = new VConsole()
 
 // 解决移动端click 300ms延迟
 fastclick.attach(document.body)

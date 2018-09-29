@@ -1,7 +1,7 @@
 <template>
   <div class="fontSidebar" :class="{'show':(isShowSidebar)}">
     <div class="box">
-      <img src="http://blog-1253521382.cosgz.myqcloud.com/base/avatar.jpeg" class="avatar">
+      <img src="https://blog-1253521382.cosgz.myqcloud.com/base/avatar.jpeg" class="avatar">
       <div v-if="routeName=='FontDirectory'">
         <span class="contact"> wechat：694835329 </span>
         <!-- <span class="contact"> mail：694835329@qq.com </span> -->

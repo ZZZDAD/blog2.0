@@ -104,11 +104,11 @@ export default {
               message: '保存成功',
               type: 'success'
             })
-            this.saving = false
             let id = response.data.data._id
             this.$store.dispatch('GetArticle', id)
             this.$store.dispatch('GetAllArticle')
           }
+          this.saving = false
         })
       })
     },
@@ -134,10 +134,10 @@ export default {
               message: '更新成功',
               type: 'success'
             })
-            this.updating = false
             this.$store.dispatch('GetArticle', this._id)
             this.$store.dispatch('GetAllArticle')
           }
+          this.updating = false
         })
       })
     },
@@ -158,10 +158,10 @@ export default {
               message: '发布成功',
               type: 'success'
             })
-            this.publishing = false
             this.$store.dispatch('GetArticle', this._id)
             this.$store.dispatch('GetAllArticle')
           }
+          this.publishing = false
         })
       })
     },
@@ -182,10 +182,10 @@ export default {
               message: '取消发布成功',
               type: 'success'
             })
-            this.cancelPublishing = false
             this.$store.dispatch('GetArticle', this._id)
             this.$store.dispatch('GetAllArticle')
           }
+          this.cancelPublishing = false
         })
       })
     },
@@ -206,10 +206,10 @@ export default {
               message: '移除成功',
               type: 'success'
             })
-            this.removing = false
             this.$store.dispatch('GetArticle', '')
             this.$store.dispatch('GetAllArticle')
           }
+          this.removing = false
         })
       })
     }

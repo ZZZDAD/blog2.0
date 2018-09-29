@@ -3,7 +3,7 @@
     <AddArticle></AddArticle>
     <div class="articleItems">
       <ArticleListItem
-        v-for='item in items'
+        v-for='item in articles'
         :key='item._id'
         :item='item'>
       </ArticleListItem>
@@ -25,7 +25,7 @@ export default {
     ArticlePagination
   },
   computed: {
-    items: function () {
+    articles: function () {
       return this.$store.getters.all_article
     }
   },

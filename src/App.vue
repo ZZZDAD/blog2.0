@@ -7,8 +7,12 @@
 </template>
 
 <script>
+import myLove from "@/util/myLove.js";
 export default {
-  name: "app"
+  name: "app",
+  mounted() {
+    console.log(myLove);
+  }
 };
 </script>
 

@@ -24,6 +24,6 @@ export function createStore() {
     getters,
     mutations,
     actions,
-    // plugins: [logger()]
+    plugins: [logger()]
   })
 }
