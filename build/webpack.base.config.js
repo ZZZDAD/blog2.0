@@ -23,6 +23,13 @@ module.exports = {
       '@': path.resolve(__dirname, '../src')
     }
   },
+  externals: {
+    'vue': 'Vue',
+    'vue-router': 'VueRouter',
+    'vuex': 'Vuex',
+    'axios': 'Axios',
+    'element-ui': 'ELEMENT',
+  },
   module: {
     noParse: /es6-promise\.js$/, // avoid webpack shimming process
     rules: [{

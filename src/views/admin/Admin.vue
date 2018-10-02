@@ -20,11 +20,6 @@ export default {
 <style lang="less" scoped>
 .admin {
   .work {
-    // position: fixed;
-    // top: 60px;
-    // left: 0;
-    // right: 0;
-    // bottom: 0;
     margin-top: 60px;
   }
 }

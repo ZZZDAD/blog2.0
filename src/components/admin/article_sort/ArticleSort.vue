@@ -46,6 +46,7 @@ export default {
       }, this.$store.getters.token).then(response => {
         if (response.data.code == 200) {
           this.$store.dispatch('GetSort')
+          this.items.splice(index, 1)
           this.$message({
             showClose: true,
             message: '移除分类标签成功',
@@ -53,7 +54,6 @@ export default {
           })
         }
       })
-      this.items.splice(index, 1)
     },
     showInput () {
       this.inputVisible = true

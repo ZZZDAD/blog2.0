@@ -9,15 +9,13 @@
 
 <script>
 import ArticleComment from "@/components/font/article_comment/ArticleComment.vue";
-import Code from "@/components/code/Code.vue";
 
 export default {
   asyncData({ store, route }) {
     return store.dispatch("GetArticle", route.params.id);
   },
   components: {
-    ArticleComment,
-    Code
+    ArticleComment
   },
   data() {
     return {

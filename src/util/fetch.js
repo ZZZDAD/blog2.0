@@ -1,7 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-import md5 from 'md5'
-import config from '@/config/api-cache.js'
 
 
 // CORS Cross-Origin Macro
@@ -16,8 +14,8 @@ axios.defaults.headers[ALLOW_METHODS] = 'GET, POST'
 
 // axios 配置
 axios.defaults.timeout = 5000 // 请求超时
-axios.defaults.baseURL = 'https://dad2048.com/server'
-// axios.defaults.baseURL = 'http://127.0.0.1:3000'
+// axios.defaults.baseURL = 'https://dad2048.com/server'
+axios.defaults.baseURL = 'http://127.0.0.1:3000/server'
 
 const CONTENT_TYPE = 'Content-Type'
 axios.defaults.headers.post[CONTENT_TYPE] = 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -30,7 +28,7 @@ const service = axios.create()
 // request拦截器(带token)
 service.interceptors.request.use(config => {
 	if (config.token) {
-		config.headers['x-access-token'] = config.token
+		config.headers['Authorization'] = `Bearer ${config.token}`
 	}
 	return config
 }, error => {
@@ -50,28 +48,22 @@ service.interceptors.request.use(config => {
 })
 
 export default {
-	post(url, params, token = null, cache = false) {
-		const key = md5(url + JSON.stringify(params))
-		if (config.cached && config.cached.has(key)) {
-			return Promise.resolve(config.cached.get(key))
-		}
+	post(url, params, token) {
+		// let headers
+		// if (window && window.__INITIAL_STATE__) {
 		const headers = {
-			'token': token
+			// token: window.__INITIAL_STATE__.token
+			token
 		}
+		// }
 		return service.post(url, params, headers)
 			.then(res => {
-				if (config.cached && cache) config.cached.set(key, res)
 				return res
 			})
 	},
-	get(url, cache = false) {
-		const key = md5(url)
-		if (config.cached && config.cached.has(key)) {
-			return Promise.resolve(config.cached.get(key))
-		}
+	get(url) {
 		return service.get(url)
 			.then(res => {
-				if (config.cached && cache) config.cached.set(key, res)
 				return res
 			})
 	}
